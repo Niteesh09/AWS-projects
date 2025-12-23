@@ -1,1 +1,59 @@
+# Day 01 – AWS Account Setup & IAM Foundations
 
+## Objective
+Set up a secure AWS account and implement IAM users, groups, roles, and policies using real-world AWS security best practices.
+
+## Best-thikngs i practised today to cover the Topics 
+- AWS account and responsibility boundaries
+- Root user vs IAM user usage
+- IAM users, groups, and permission assignment
+- Managed vs custom IAM policies
+- Foundational AWS security practices
+
+## What I Implemented on Day 1
+
+### AWS Account Access & Review
+Logged in using the AWS root account, reviewed account-level settings, and verified billing access to ensure visibility and cost awareness from the start.
+
+### IAM Admin User Setup
+Created a dedicated IAM admin user for daily operations and enabled AWS Management Console access with a strong password policy to avoid using the root account.
+
+### IAM Group & Permission Management
+Created an IAM group named `AdminGroup`, attached the AWS managed `AdministratorAccess` policy, and added the admin user to the group for centralized permission control.
+
+### Root Account Security Hardening
+Enabled multi-factor authentication (MFA) on the root account and restricted its usage to account-level tasks only, following AWS security recommendations.
+
+### Custom IAM Permission Policy
+Created a custom IAM permission policy providing full access to EC2 and read-only access to S3, applying the principle of least privilege.
+
+### IAM Role Creation & Trust Relationship
+Created an IAM role for the EC2 service, configured the trust policy to allow EC2 to assume the role, and attached the custom permission policy to enable secure service-to-service access.
+
+## Why This Setup Matters
+This setup avoids root account misuse, enforces secure access boundaries, and mirrors how AWS environments are structured in real production systems.
+
+## Real-World Industry Practice
+In production environments, root accounts are locked down with MFA, IAM users are created only for human access, permissions are managed via groups, and AWS services communicate using IAM roles instead of static credentials.
+
+## Key Takeaways
+- Root credentials should never be used for daily operations  
+- IAM groups simplify permission management and auditing  
+- IAM roles eliminate the need for hard-coded credentials  
+- Least privilege access reduces security risk  
+
+## Next Steps – Validation & Access Testing
+
+### EC2 to S3 Access Validation
+- Launched an EC2 instance with the created IAM role attached
+- Verified that the instance could list and read objects from S3
+- Confirmed write operations were restricted as per policy
+
+### Security Verification
+- Ensured no access keys were stored on the EC2 instance
+- Validated access was granted only through the IAM role
+
+### Outcome
+Successfully validated secure, role-based access from EC2 to S3 without using static credentials, aligning with AWS best practices.
+
+Thank you.
